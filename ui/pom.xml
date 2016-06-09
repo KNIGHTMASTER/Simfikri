@@ -14,6 +14,7 @@
         <maven.compiler.source>1.7</maven.compiler.source>
         <maven.compiler.target>1.7</maven.compiler.target>
         <start-class>com.tamam.simfikri.ui.MainApp</start-class>
+        <jtattoo-version>1.6.7</jtattoo-version>
     </properties>
     
     <dependencies>
@@ -30,9 +31,14 @@
         <dependency>
             <groupId>com.jtattoo</groupId>
             <artifactId>JTattoo</artifactId>
-            <version>1.6.7</version>
+            <version>${jtattoo-version}</version>
         </dependency>
-
+        
+        <dependency>
+            <groupId>com.tamam</groupId>
+            <artifactId>core</artifactId>
+            <version>1.0.0</version>
+        </dependency>
     </dependencies>        
     
     <build>

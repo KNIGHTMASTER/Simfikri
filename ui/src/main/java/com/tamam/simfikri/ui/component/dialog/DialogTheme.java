@@ -2,7 +2,6 @@ package com.tamam.simfikri.ui.component.dialog;
 
 import com.tamam.simfikri.ui.component.base.IComponentInitalizer;
 import com.tamam.simfikri.ui.component.theme.ThemeChooser;
-import javax.annotation.PostConstruct;
 import javax.swing.JComboBox;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
@@ -14,7 +13,7 @@ import org.springframework.stereotype.Component;
  * @author <a href="fauzi.knightmaster.achmad@gmail.com">Achmad Fauzi</a>
  */
 @Component
-public class ThemeDialog extends JDialog implements IComponentInitalizer{
+public class DialogTheme extends JDialog implements IComponentInitalizer{
     
     private static final long serialVersionUID = -910170184194682402L;
     
@@ -27,8 +26,7 @@ public class ThemeDialog extends JDialog implements IComponentInitalizer{
     public void setComponent(java.awt.Component component) {
         this.component = component;
     }
-        
-    @PostConstruct
+            
     @Override
     public void init() {        
         int y = 250;

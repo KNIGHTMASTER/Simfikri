@@ -1,6 +1,7 @@
 package com.tamam.simfikri.ui.component.view.frame;
 
-import com.tamam.simfikri.ui.component.dialog.ThemeDialog;
+import com.tamam.simfikri.ui.component.dialog.DialogLogin;
+import com.tamam.simfikri.ui.component.dialog.DialogTheme;
 import com.tamam.simfikri.ui.component.frame.FrameSetupImpl;
 import com.tamam.simfikri.ui.component.frame.IFrameSetup;
 import com.tamam.simfikri.ui.component.icon.IIconFrame;
@@ -25,7 +26,10 @@ public class MainFrame extends javax.swing.JFrame {
     IFrameSetup frameSetup;
     
     @Autowired
-    ThemeDialog themeDialog;
+    DialogTheme themeDialog;
+    
+    @Autowired
+    DialogLogin loginDialog;
     
     @PostConstruct
     public void setupFrame(){        
@@ -146,7 +150,7 @@ public class MainFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_subMenuDashboardActionPerformed
 
     private void subMenuLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_subMenuLoginActionPerformed
-        
+        loginDialog.setVisible(true);
     }//GEN-LAST:event_subMenuLoginActionPerformed
 
     private void subMenuLogoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_subMenuLogoutActionPerformed
@@ -154,6 +158,8 @@ public class MainFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_subMenuLogoutActionPerformed
 
     private void subMenuThemeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_subMenuThemeActionPerformed
+        themeDialog.setComponent(this);
+        themeDialog.init();
         themeDialog.setVisible(true);
     }//GEN-LAST:event_subMenuThemeActionPerformed
 

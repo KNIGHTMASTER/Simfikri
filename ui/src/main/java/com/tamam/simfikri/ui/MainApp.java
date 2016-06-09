@@ -4,15 +4,21 @@ import com.tamam.simfikri.ui.component.view.frame.MainFrame;
 import com.tamam.simfikri.ui.component.view.splash.SplashScreen;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
+import org.springframework.boot.orm.jpa.EntityScan;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
+import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
+import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 /**
  * 
  * @author <a href="fauzi.knightmaster.achmad@gmail.com">Achmad Fauzi</a>
  */
 @SpringBootApplication
-@ComponentScan("com.tamam.simfikri.ui")
+@ComponentScan("com.tamam")
+@EnableTransactionManagement
+@EntityScan(basePackages = "com.tamam")
+@EnableJpaRepositories(basePackages = "com.tamam")
 public class MainApp {
     /**
      * Application main() method.
