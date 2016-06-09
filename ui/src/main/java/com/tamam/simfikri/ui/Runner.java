@@ -1,6 +1,6 @@
 package com.tamam.simfikri.ui;
 
-import com.tamam.simfikri.ui.component.view.frame.MainFrame;
+import com.tamam.simfikri.ui.component.view.frame.FrameMain;
 import com.tamam.simfikri.ui.component.view.splash.SplashScreen;
 import java.util.logging.Level;
 import java.util.logging.Logger;

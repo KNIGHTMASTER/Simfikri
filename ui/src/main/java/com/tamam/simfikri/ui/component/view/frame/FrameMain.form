@@ -24,7 +24,7 @@
         </Menu>
         <Menu class="javax.swing.JMenu" name="menuLogin">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Login"/>
+            <Property name="text" type="java.lang.String" value="Auth"/>
           </Properties>
           <SubComponents>
             <MenuItem class="javax.swing.JMenuItem" name="subMenuLogin">

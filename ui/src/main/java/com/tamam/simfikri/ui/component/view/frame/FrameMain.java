@@ -1,10 +1,15 @@
 package com.tamam.simfikri.ui.component.view.frame;
 
+import com.tamam.simfikri.ui.component.dialog.DialogAbout;
 import com.tamam.simfikri.ui.component.dialog.DialogLogin;
 import com.tamam.simfikri.ui.component.dialog.DialogTheme;
 import com.tamam.simfikri.ui.component.frame.FrameSetupImpl;
 import com.tamam.simfikri.ui.component.frame.IFrameSetup;
 import com.tamam.simfikri.ui.component.icon.IIconFrame;
+import com.tamam.simfikri.ui.component.view.desktoppane.DesktopPaneMain;
+import com.tamam.simfikri.ui.component.view.internalframe.dashboard.InternalFrameDashboard;
+import java.awt.Dimension;
+import java.awt.Toolkit;
 import javax.annotation.PostConstruct;
 import javax.swing.ImageIcon;
 import org.slf4j.Logger;
@@ -14,26 +19,38 @@ import org.springframework.stereotype.Component;
 
 /**
  *
- * @author pcampbell
+ * @author <a href="fauzi.knightmaster.achmad@gmail.com">Achmad Fauzi</a>
  */
 @Component
-public class MainFrame extends javax.swing.JFrame {
+public class FrameMain extends javax.swing.JFrame {
     
     private static final long serialVersionUID = -7864902051693765103L;
-    private Logger logger = LoggerFactory.getLogger(MainFrame.class);
+    private Logger logger = LoggerFactory.getLogger(FrameMain.class);
+    
+    final Toolkit toolkit = Toolkit.getDefaultToolkit();
+    final Dimension screenSize = toolkit.getScreenSize();
     
     @Autowired
-    IFrameSetup frameSetup;
+    private IFrameSetup frameSetup;
     
     @Autowired
-    DialogTheme themeDialog;
+    private DialogTheme dialogTheme;
     
     @Autowired
-    DialogLogin loginDialog;
+    private DialogLogin dialogLogin;
+    
+    @Autowired
+    private DialogAbout dialogAbout;
+    
+    @Autowired
+    private DesktopPaneMain desktopPaneMain;        
+    
+    @Autowired
+    private InternalFrameDashboard internalFrameDashboard;
     
     @PostConstruct
     public void setupFrame(){        
-        frameSetup.doCompleteSetup(MainFrame.this);
+        frameSetup.doCompleteSetup(FrameMain.this);
         
         menuMain.setIcon(new ImageIcon(getClass().getClassLoader().getResource("assets/menu-main.png")));
         subMenuDashboard.setIcon(new ImageIcon(getClass().getClassLoader().getResource("assets/dashboard-small.png")));        
@@ -43,11 +60,21 @@ public class MainFrame extends javax.swing.JFrame {
         menuSetting.setIcon(new ImageIcon(getClass().getClassLoader().getResource("assets/menu-setting.png")));
         subMenuTheme.setIcon(new ImageIcon(getClass().getClassLoader().getResource("assets/menu-theme.png")));
         subMenuAbout.setIcon(new ImageIcon(getClass().getClassLoader().getResource("assets/menu-about.png")));
+        
+        setMenuVisibility(false);
+        
+        this.getContentPane().add(desktopPaneMain, java.awt.BorderLayout.CENTER);
     }
     
-    public MainFrame() {
-        initComponents();
-        
+    public void setMenuVisibility(boolean b){
+        menuMain.setVisible(b);
+        subMenuDashboard.setVisible(b);
+        subMenuLogin.setVisible(!b);
+        subMenuLogout.setVisible(b);
+    }
+    
+    public FrameMain() {
+        initComponents();        
     }
 
     /**
@@ -85,7 +112,7 @@ public class MainFrame extends javax.swing.JFrame {
 
         menuBar.add(menuMain);
 
-        menuLogin.setText("Login");
+        menuLogin.setText("Auth");
 
         subMenuLogin.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_L, java.awt.event.InputEvent.CTRL_MASK));
         subMenuLogin.setText("Login");
@@ -146,31 +173,32 @@ public class MainFrame extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void subMenuDashboardActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_subMenuDashboardActionPerformed
-        
+        desktopPaneMain.add(internalFrameDashboard);
+        int x = (screenSize.width - this.WIDTH) / 6;
+        int y = (screenSize.height - this.HEIGHT) /10;
+        internalFrameDashboard.setSize(900, 550);
+        internalFrameDashboard.setLocation(x, y);
+        internalFrameDashboard.setVisible(true);
     }//GEN-LAST:event_subMenuDashboardActionPerformed
 
     private void subMenuLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_subMenuLoginActionPerformed
-        loginDialog.setVisible(true);
+        dialogLogin.setFrameMain(this);
+        dialogLogin.init();
+        dialogLogin.setVisible(true);
     }//GEN-LAST:event_subMenuLoginActionPerformed
 
     private void subMenuLogoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_subMenuLogoutActionPerformed
-        
+        setMenuVisibility(false);
     }//GEN-LAST:event_subMenuLogoutActionPerformed
 
     private void subMenuThemeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_subMenuThemeActionPerformed
-        themeDialog.setComponent(this);
-        themeDialog.init();
-        themeDialog.setVisible(true);
+        dialogTheme.setComponent(this);
+        dialogTheme.init();
+        dialogTheme.setVisible(true);
     }//GEN-LAST:event_subMenuThemeActionPerformed
 
     private void subMenuAboutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_subMenuAboutActionPerformed
-        // TODO add your handling code here:
-//        int y = 250;
-//        int x = 500;
-//        DialogAbout.setModal(true);
-//        DialogAbout.setLocation(x, y);
-//        DialogAbout.setSize(300, 300);
-//        DialogAbout.show();
+        dialogAbout.setVisible(true);
     }//GEN-LAST:event_subMenuAboutActionPerformed
 
     /**
@@ -190,21 +218,23 @@ public class MainFrame extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(MainFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FrameMain.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(MainFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FrameMain.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(MainFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FrameMain.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(MainFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FrameMain.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new MainFrame().setVisible(true);
+                new FrameMain().setVisible(true);
             }
         });
     }

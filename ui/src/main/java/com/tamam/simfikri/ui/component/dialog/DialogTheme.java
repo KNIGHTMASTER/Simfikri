@@ -1,8 +1,8 @@
 package com.tamam.simfikri.ui.component.dialog;
 
 import com.tamam.simfikri.ui.component.base.IComponentInitalizer;
-import com.tamam.simfikri.ui.component.theme.ThemeChooser;
-import javax.swing.JComboBox;
+import com.tamam.simfikri.ui.component.combobox.ComboBoxTheme;
+import com.tamam.simfikri.ui.controller.dialog.ControllerDialogTheme;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,9 +18,11 @@ public class DialogTheme extends JDialog implements IComponentInitalizer{
     private static final long serialVersionUID = -910170184194682402L;
     
     @Autowired
-    private ThemeChooser themeChooser;
+    private ControllerDialogTheme themeChooser;
 
-    private JComboBox cmbTheme;
+    @Autowired
+    ComboBoxTheme comboBoxTheme;
+    
     private java.awt.Component component;
 
     public void setComponent(java.awt.Component component) {
@@ -39,40 +41,15 @@ public class DialogTheme extends JDialog implements IComponentInitalizer{
         this.getContentPane().setLayout(new java.awt.GridLayout(1, 0));
 
         JLabel lblOption = new JLabel("Option : ");        
-        this.getContentPane().add(lblOption);
+        this.getContentPane().add(lblOption);                
         
-        cmbTheme = new JComboBox();
-        cmbTheme.setModel(
-                new javax.swing.DefaultComboBoxModel(
-                        new String[] { 
-                            "Nimbus", 
-                            "Windows Classic", 
-                            "Windows", 
-                            "Acryl", 
-                            "Aero", 
-                            "Aluminium", 
-                            "Bernstein", 
-                            "Fast", 
-                            "Graphite", 
-                            "HiFi", 
-                            "Luna", 
-                            "Metal", 
-                            "McWin", 
-                            "Mint", 
-                            "Noire", 
-                            "Smart", 
-                            "Texture" 
-                        }
-                )
-        );
-        
-        cmbTheme.addActionListener(new java.awt.event.ActionListener() {
+        comboBoxTheme.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                themeChooser.start(evt, cmbTheme, component);
+                themeChooser.start(evt, comboBoxTheme, component);
             }
         });
         
-        this.getContentPane().add(cmbTheme);
+        this.getContentPane().add(comboBoxTheme);
     }
     
 }

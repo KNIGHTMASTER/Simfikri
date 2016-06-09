@@ -1,6 +1,6 @@
 package com.tamam.simfikri.ui.component.view.splash;
 
-import com.tamam.simfikri.ui.component.view.frame.MainFrame;
+import com.tamam.simfikri.ui.component.view.frame.FrameMain;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Frame;
@@ -29,7 +29,7 @@ import org.springframework.stereotype.Component;
 public class SplashScreen {
     
     @Autowired
-    MainFrame frame;
+    FrameMain frame;
     
     private JDialog dialog; 
     

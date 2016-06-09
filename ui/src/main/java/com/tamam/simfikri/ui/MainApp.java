@@ -1,6 +1,6 @@
 package com.tamam.simfikri.ui;
 
-import com.tamam.simfikri.ui.component.view.frame.MainFrame;
+import com.tamam.simfikri.ui.component.view.frame.FrameMain;
 import com.tamam.simfikri.ui.component.view.splash.SplashScreen;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
@@ -46,16 +46,16 @@ public class MainApp {
     }
 
     /**
-     * Creates the {@link MainFrame} object and returns it.
+     * Creates the {@link FrameMain} object and returns it.
      *
      * This @Bean could have been replaced by a @Component annotation being
-     * added to the {@link MainFrame} class.
+     * added to the {@link FrameMain} class.
      *
      * @return the application window
      */
     @Bean
-    public MainFrame frame() {
-        return new MainFrame();
+    public FrameMain frame() {
+        return new FrameMain();
     }
     
     @Bean

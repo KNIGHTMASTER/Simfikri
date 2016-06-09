@@ -1,4 +1,4 @@
-package com.tamam.simfikri.ui.component.theme;
+package com.tamam.simfikri.ui.controller.dialog;
 
 import com.sun.java.swing.plaf.windows.WindowsClassicLookAndFeel;
 import com.sun.java.swing.plaf.windows.WindowsLookAndFeel;
@@ -15,7 +15,7 @@ import org.springframework.stereotype.Component;
  * @author <a href="fauzi.knightmaster.achmad@gmail.com">Achmad Fauzi</a>
  */
 @Component
-public class ThemeChooser {
+public class ControllerDialogTheme {
     
     public void start(java.awt.event.ActionEvent evt, JComboBox p_ComboTheme, java.awt.Component p_Component) {
         String theme = "Default";
