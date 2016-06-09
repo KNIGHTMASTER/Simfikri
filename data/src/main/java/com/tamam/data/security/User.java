@@ -33,7 +33,7 @@ public class User {
     @Column(name = "status")
     private Integer status;
     
-    @Column(name = "description")
+    @Column(name = "user_description")
     private String description;
 
     public BigInteger getId() {

@@ -2,6 +2,7 @@ package com.tamam.simfikri.ui.component.dialog;
 
 import com.tamam.simfikri.core.service.auth.IAuthService;
 import com.tamam.simfikri.ui.component.base.IComponentInitalizer;
+import com.tamam.simfikri.ui.controller.auth.ControllerAuth;
 import javax.annotation.PostConstruct;
 import javax.swing.JButton;
 import javax.swing.JDialog;
@@ -23,7 +24,10 @@ public class DialogLogin extends JDialog implements IComponentInitalizer{
     private static final long serialVersionUID = 6858232016968301160L;
 
     @Autowired
-    IAuthService authService;
+    private IAuthService authService;
+    
+    @Autowired
+    private ControllerAuth controllerAuth;
     
     private JTextField txtUserName;
     private JPasswordField txtPassword;
@@ -131,8 +135,7 @@ public class DialogLogin extends JDialog implements IComponentInitalizer{
         String password = String.valueOf(txtPassword.getPassword()).trim();
         if (userName != null){
             if (password != null){
-                int loginResult = authService.login(userName, password);
-                
+                controllerAuth.authenticateAndAuthorize(this, userName, password);                
             }else {
                 JOptionPane.showMessageDialog(rootPane, "Password can not be empty");
             }
