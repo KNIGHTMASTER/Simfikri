@@ -11,6 +11,8 @@ import com.tamam.simfikri.ui.component.view.panel.internalframe.dashboard.Intern
 import com.tamam.simfikri.ui.controller.internalframe.ControllerDashboard;
 import javax.annotation.PostConstruct;
 import javax.swing.JInternalFrame;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -22,6 +24,7 @@ import org.springframework.stereotype.Component;
 public class InternalFrameDashboard extends JInternalFrame implements IComponentInitalizer{
     
     private static final long serialVersionUID = -7054309726946051212L;
+    private Logger logger = LoggerFactory.getLogger(InternalFrameDashboard.class);
 
     @Autowired
     private InternalFrameDashboardPanelLeft panelLeft;
@@ -49,13 +52,12 @@ public class InternalFrameDashboard extends JInternalFrame implements IComponent
     
     @PostConstruct
     @Override
-    public void init() {
+    public void init() {        
         this.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED), "Dashboard"));
+        this.setMaximizable(true);
+        this.setResizable(true);
         this.setClosable(true);
         this.setIconifiable(true);
-        this.setTitle("Dashboard");
-        this.setVisible(true);
-
         
         initButton();
         initAction();                

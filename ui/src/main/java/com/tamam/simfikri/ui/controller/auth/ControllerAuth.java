@@ -28,7 +28,7 @@ public class ControllerAuth {
             p_FrameMain.setMenuVisibility(true);
             p_DialogLogin.dispose();
         }else {
-            JOptionPane.showMessageDialog(p_DialogLogin, "Login Failed, user name || password does not match our record");
+            JOptionPane.showMessageDialog(p_DialogLogin, "Login Failed, user name || password does not match our record");            
         }
     }
 }

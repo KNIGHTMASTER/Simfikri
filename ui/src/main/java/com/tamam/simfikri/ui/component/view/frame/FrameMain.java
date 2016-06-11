@@ -3,15 +3,14 @@ package com.tamam.simfikri.ui.component.view.frame;
 import com.tamam.simfikri.ui.component.dialog.DialogAbout;
 import com.tamam.simfikri.ui.component.dialog.DialogLogin;
 import com.tamam.simfikri.ui.component.dialog.DialogTheme;
-import com.tamam.simfikri.ui.component.frame.FrameSetupImpl;
 import com.tamam.simfikri.ui.component.frame.IFrameSetup;
-import com.tamam.simfikri.ui.component.icon.IIconFrame;
 import com.tamam.simfikri.ui.component.view.desktoppane.DesktopPaneMain;
 import com.tamam.simfikri.ui.component.view.internalframe.dashboard.InternalFrameDashboard;
 import java.awt.Dimension;
 import java.awt.Toolkit;
 import javax.annotation.PostConstruct;
 import javax.swing.ImageIcon;
+import javax.swing.JLabel;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -46,7 +45,7 @@ public class FrameMain extends javax.swing.JFrame {
     private DesktopPaneMain desktopPaneMain;        
     
     @Autowired
-    private InternalFrameDashboard internalFrameDashboard;
+    private InternalFrameDashboard internalFrameDashboard;        
     
     @PostConstruct
     public void setupFrame(){        
@@ -61,9 +60,8 @@ public class FrameMain extends javax.swing.JFrame {
         subMenuTheme.setIcon(new ImageIcon(getClass().getClassLoader().getResource("assets/menu-theme.png")));
         subMenuAbout.setIcon(new ImageIcon(getClass().getClassLoader().getResource("assets/menu-about.png")));
         
-        setMenuVisibility(false);
-        
-        this.getContentPane().add(desktopPaneMain, java.awt.BorderLayout.CENTER);
+        setMenuVisibility(false);        
+        setContentPane(desktopPaneMain);
     }
     
     public void setMenuVisibility(boolean b){
@@ -173,12 +171,15 @@ public class FrameMain extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void subMenuDashboardActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_subMenuDashboardActionPerformed
+        if (internalFrameDashboard != null) {
+            internalFrameDashboard.dispose();
+        }        
         desktopPaneMain.add(internalFrameDashboard);
         int x = (screenSize.width - this.WIDTH) / 6;
-        int y = (screenSize.height - this.HEIGHT) /10;
+        int y = (screenSize.height - this.HEIGHT) / 10;
         internalFrameDashboard.setSize(900, 550);
         internalFrameDashboard.setLocation(x, y);
-        internalFrameDashboard.setVisible(true);
+        internalFrameDashboard.setVisible(true);    
     }//GEN-LAST:event_subMenuDashboardActionPerformed
 
     private void subMenuLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_subMenuLoginActionPerformed
