@@ -2,6 +2,7 @@ package com.tamam.simfikri.ui.component.view.frame;
 
 import com.tamam.simfikri.ui.component.dialog.DialogAbout;
 import com.tamam.simfikri.ui.component.dialog.DialogLogin;
+import com.tamam.simfikri.ui.component.dialog.DialogServer;
 import com.tamam.simfikri.ui.component.dialog.DialogTheme;
 import com.tamam.simfikri.ui.component.frame.IFrameSetup;
 import com.tamam.simfikri.ui.component.view.desktoppane.DesktopPaneMain;
@@ -10,7 +11,6 @@ import java.awt.Dimension;
 import java.awt.Toolkit;
 import javax.annotation.PostConstruct;
 import javax.swing.ImageIcon;
-import javax.swing.JLabel;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,6 +42,9 @@ public class FrameMain extends javax.swing.JFrame {
     private DialogAbout dialogAbout;
     
     @Autowired
+    private DialogServer dialogServer;
+    
+    @Autowired
     private DesktopPaneMain desktopPaneMain;        
     
     @Autowired
@@ -49,8 +52,13 @@ public class FrameMain extends javax.swing.JFrame {
     
     @PostConstruct
     public void setupFrame(){        
-        frameSetup.doCompleteSetup(FrameMain.this);
-        
+        frameSetup.doCompleteSetup(FrameMain.this);                
+        initButton();
+        setMenuVisibility(false);        
+        setContentPane(desktopPaneMain);
+    }
+    
+    private void initButton(){
         menuMain.setIcon(new ImageIcon(getClass().getClassLoader().getResource("assets/menu-main.png")));
         subMenuDashboard.setIcon(new ImageIcon(getClass().getClassLoader().getResource("assets/dashboard-small.png")));        
         menuLogin.setIcon(new ImageIcon(getClass().getClassLoader().getResource("assets/menu-login.png")));
@@ -59,9 +67,7 @@ public class FrameMain extends javax.swing.JFrame {
         menuSetting.setIcon(new ImageIcon(getClass().getClassLoader().getResource("assets/menu-setting.png")));
         subMenuTheme.setIcon(new ImageIcon(getClass().getClassLoader().getResource("assets/menu-theme.png")));
         subMenuAbout.setIcon(new ImageIcon(getClass().getClassLoader().getResource("assets/menu-about.png")));
-        
-        setMenuVisibility(false);        
-        setContentPane(desktopPaneMain);
+        subMenuServer.setIcon(new ImageIcon(getClass().getClassLoader().getResource("assets/bt-network.png")));
     }
     
     public void setMenuVisibility(boolean b){
@@ -93,6 +99,7 @@ public class FrameMain extends javax.swing.JFrame {
         menuSetting = new javax.swing.JMenu();
         subMenuTheme = new javax.swing.JMenuItem();
         subMenuAbout = new javax.swing.JMenuItem();
+        subMenuServer = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Boot Application");
@@ -152,6 +159,15 @@ public class FrameMain extends javax.swing.JFrame {
         });
         menuSetting.add(subMenuAbout);
 
+        subMenuServer.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_S, java.awt.event.InputEvent.CTRL_MASK));
+        subMenuServer.setText("Server");
+        subMenuServer.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                subMenuServerActionPerformed(evt);
+            }
+        });
+        menuSetting.add(subMenuServer);
+
         menuBar.add(menuSetting);
 
         setJMenuBar(menuBar);
@@ -202,6 +218,12 @@ public class FrameMain extends javax.swing.JFrame {
         dialogAbout.setVisible(true);
     }//GEN-LAST:event_subMenuAboutActionPerformed
 
+    private void subMenuServerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_subMenuServerActionPerformed
+        dialogServer.setFrameMain(this);
+        dialogServer.init();
+        dialogServer.setVisible(true);
+    }//GEN-LAST:event_subMenuServerActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -249,6 +271,7 @@ public class FrameMain extends javax.swing.JFrame {
     private javax.swing.JMenuItem subMenuDashboard;
     private javax.swing.JMenuItem subMenuLogin;
     private javax.swing.JMenuItem subMenuLogout;
+    private javax.swing.JMenuItem subMenuServer;
     private javax.swing.JMenuItem subMenuTheme;
     // End of variables declaration//GEN-END:variables
 }

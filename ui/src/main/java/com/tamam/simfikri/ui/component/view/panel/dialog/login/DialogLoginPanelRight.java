@@ -33,15 +33,15 @@ public class DialogLoginPanelRight extends JPanel implements IComponentInitalize
         txtUserName = new JTextField();
         txtUserName.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btLogin.doClick();
+                txtPassword.requestFocus();
             }
         });
         this.add(txtUserName);
 
         txtPassword = new JPasswordField();
         txtPassword.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtPassword.requestFocus();
+            public void actionPerformed(java.awt.event.ActionEvent evt) {                
+                btLogin.doClick();
             }
         });
         this.add(txtPassword);

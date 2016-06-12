@@ -16,7 +16,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class ControllerAuth {
     
-    private Logger logger = LoggerFactory.getLogger(ControllerAuth.class);
+    private final Logger logger = LoggerFactory.getLogger(ControllerAuth.class);
     
     @Autowired
     private IAuthService authService;        

@@ -1,5 +1,6 @@
 package com.tamam.simfikri.ui.component.dialog;
 
+import com.tamam.simfikri.ui.component.base.IComponentAction;
 import com.tamam.simfikri.ui.component.base.IComponentInitalizer;
 import com.tamam.simfikri.ui.component.view.frame.FrameMain;
 import com.tamam.simfikri.ui.component.view.panel.dialog.login.DialogLoginPanelBottom;
@@ -16,7 +17,7 @@ import org.springframework.stereotype.Component;
  * @author <a href="fauzi.knightmaster.achmad@gmail.com">Achmad Fauzi</a>
  */
 @Component
-public class DialogLogin extends JDialog implements IComponentInitalizer{
+public class DialogLogin extends JDialog implements IComponentInitalizer, IComponentAction{
     
     private static final long serialVersionUID = 6858232016968301160L;    
     
@@ -48,7 +49,8 @@ public class DialogLogin extends JDialog implements IComponentInitalizer{
         initAction();
     }                
     
-    private void initAction() {
+    @Override
+    public void initAction() {
         final JTextField txtUserName = dialogLoginPanelTop.getDialogLoginPanelRight().getTxtUserName();
         final JPasswordField txtPassword = dialogLoginPanelTop.getDialogLoginPanelRight().getTxtPassword();
         dialogLoginPanelBottom.getBtLogin().addActionListener(new java.awt.event.ActionListener() {
