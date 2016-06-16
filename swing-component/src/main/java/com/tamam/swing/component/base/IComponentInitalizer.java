@@ -1,4 +1,4 @@
-package com.tamam.simfikri.ui.component.base;
+package com.tamam.swing.component.base;
 
 /**
  * @author <a href="fauzi.knightmaster.achmad@gmail.com">Achmad Fauzi</a>

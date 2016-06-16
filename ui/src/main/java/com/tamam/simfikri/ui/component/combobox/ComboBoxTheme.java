@@ -1,6 +1,6 @@
 package com.tamam.simfikri.ui.component.combobox;
 
-import com.tamam.simfikri.ui.component.base.IComponentInitalizer;
+import com.tamam.swing.component.base.IComponentInitalizer;
 import javax.annotation.PostConstruct;
 import javax.swing.JComboBox;
 import org.springframework.stereotype.Component;

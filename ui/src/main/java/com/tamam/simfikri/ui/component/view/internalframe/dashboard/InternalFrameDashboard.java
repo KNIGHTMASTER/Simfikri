@@ -1,6 +1,6 @@
 package com.tamam.simfikri.ui.component.view.internalframe.dashboard;
 
-import com.tamam.simfikri.ui.component.base.IComponentInitalizer;
+import com.tamam.swing.component.base.IComponentInitalizer;
 import com.tamam.simfikri.ui.component.button.dashboard.ButtonDashboard;
 import com.tamam.simfikri.ui.component.button.dashboard.ButtonMaintenance;
 import com.tamam.simfikri.ui.component.button.dashboard.ButtonMaster;
@@ -76,30 +76,35 @@ public class InternalFrameDashboard extends JInternalFrame implements IComponent
 
     private void initAction(){
         buttonDashboard.addActionListener(new java.awt.event.ActionListener() {
+            @Override
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 controllerDashboard.buttonDashboardActionPerformed(evt, panelCenter);
             }
         });
         
         buttonMaster.addActionListener(new java.awt.event.ActionListener() {
+            @Override
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 controllerDashboard.buttonMasterActionPerformed(evt, panelCenter);
             }
         });
                 
         buttonTransaction.addActionListener(new java.awt.event.ActionListener() {
+            @Override
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 controllerDashboard.buttonTransactionActionPerformed(evt, panelCenter);
             }
         });
         
         buttonReport.addActionListener(new java.awt.event.ActionListener() {
+            @Override
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 controllerDashboard.buttonReportActionPerformed(evt, panelCenter);
             }
         });
         
         buttonMaintenance.addActionListener(new java.awt.event.ActionListener() {
+            @Override
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 controllerDashboard.buttonMaintenanceActionPerformed(evt, panelCenter);
             }

@@ -1,5 +1,6 @@
 package com.tamam.simfikri.ui.controller.internalframe;
 
+import com.tamam.simfikri.ui.component.view.panel.internalframe.dashboard.InternalFrameDashboardPanelCenter;
 import java.awt.CardLayout;
 import javax.swing.JPanel;
 import org.springframework.stereotype.Component;
@@ -11,13 +12,13 @@ import org.springframework.stereotype.Component;
 @Component
 public class ControllerDashboard {
     
-    public void buttonDashboardActionPerformed(java.awt.event.ActionEvent evt, JPanel p_CardLayout){
-        CardLayout cl=(CardLayout) p_CardLayout.getLayout();        
+    public void buttonDashboardActionPerformed(java.awt.event.ActionEvent evt, InternalFrameDashboardPanelCenter p_CardLayout){
+        CardLayout cl=(CardLayout) (p_CardLayout.getLayout());
         cl.show(p_CardLayout, "dashboard");
     }
     
     public void buttonMasterActionPerformed(java.awt.event.ActionEvent evt, JPanel p_CardLayout){
-        CardLayout cl=(CardLayout) p_CardLayout.getLayout();        
+        CardLayout cl=(CardLayout) (p_CardLayout.getLayout());
         cl.show(p_CardLayout, "master");
     }
     

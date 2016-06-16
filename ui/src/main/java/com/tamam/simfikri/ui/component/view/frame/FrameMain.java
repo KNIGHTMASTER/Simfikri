@@ -7,6 +7,8 @@ import com.tamam.simfikri.ui.component.dialog.DialogTheme;
 import com.tamam.simfikri.ui.component.frame.IFrameSetup;
 import com.tamam.simfikri.ui.component.view.desktoppane.DesktopPaneMain;
 import com.tamam.simfikri.ui.component.view.internalframe.dashboard.InternalFrameDashboard;
+import com.tamam.simfikri.ui.controller.frame.ControllerFrameMain;
+import com.tamam.simfikri.ui.controller.frame.ParamControllerFrameMain;
 import java.awt.Dimension;
 import java.awt.Toolkit;
 import javax.annotation.PostConstruct;
@@ -29,6 +31,8 @@ public class FrameMain extends javax.swing.JFrame {
     final Toolkit toolkit = Toolkit.getDefaultToolkit();
     final Dimension screenSize = toolkit.getScreenSize();
     
+    private ParamControllerFrameMain paramControllerFrameMain;
+    
     @Autowired
     private IFrameSetup frameSetup;
     
@@ -50,12 +54,34 @@ public class FrameMain extends javax.swing.JFrame {
     @Autowired
     private InternalFrameDashboard internalFrameDashboard;        
     
+    @Autowired
+    private ControllerFrameMain controllerFrameMain;
+    
     @PostConstruct
     public void setupFrame(){        
         frameSetup.doCompleteSetup(FrameMain.this);                
         initButton();
         setMenuVisibility(false);        
         setContentPane(desktopPaneMain);
+        initParam();
+        controllerFrameMain.setComponent(paramControllerFrameMain);
+    }
+    
+    private void initParam(){
+        paramControllerFrameMain = new ParamControllerFrameMain();
+        
+        paramControllerFrameMain.setScreenSizeHeight(screenSize.height);
+        paramControllerFrameMain.setScreenSizeWidth(screenSize.width);
+        paramControllerFrameMain.setObserverHeight(this.HEIGHT);
+        paramControllerFrameMain.setObserverWidth(this.WIDTH);
+        
+        paramControllerFrameMain.setFrameMain(this);
+        paramControllerFrameMain.setDesktopPaneMain(desktopPaneMain);
+        paramControllerFrameMain.setDialogAbout(dialogAbout);
+        paramControllerFrameMain.setDialogLogin(dialogLogin);
+        paramControllerFrameMain.setDialogServer(dialogServer);
+        paramControllerFrameMain.setDialogTheme(dialogTheme);
+        paramControllerFrameMain.setInternalFrameDashboard(internalFrameDashboard);
     }
     
     private void initButton(){
@@ -187,21 +213,11 @@ public class FrameMain extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void subMenuDashboardActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_subMenuDashboardActionPerformed
-        if (internalFrameDashboard != null) {
-            internalFrameDashboard.dispose();
-        }        
-        desktopPaneMain.add(internalFrameDashboard);
-        int x = (screenSize.width - this.WIDTH) / 6;
-        int y = (screenSize.height - this.HEIGHT) / 10;
-        internalFrameDashboard.setSize(900, 550);
-        internalFrameDashboard.setLocation(x, y);
-        internalFrameDashboard.setVisible(true);    
+        controllerFrameMain.subMenuDashboardActionPerformed();
     }//GEN-LAST:event_subMenuDashboardActionPerformed
 
     private void subMenuLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_subMenuLoginActionPerformed
-        dialogLogin.setFrameMain(this);
-        dialogLogin.init();
-        dialogLogin.setVisible(true);
+        controllerFrameMain.subMenuLoginActionPerformed();
     }//GEN-LAST:event_subMenuLoginActionPerformed
 
     private void subMenuLogoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_subMenuLogoutActionPerformed
@@ -209,9 +225,7 @@ public class FrameMain extends javax.swing.JFrame {
     }//GEN-LAST:event_subMenuLogoutActionPerformed
 
     private void subMenuThemeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_subMenuThemeActionPerformed
-        dialogTheme.setComponent(this);
-        dialogTheme.init();
-        dialogTheme.setVisible(true);
+        controllerFrameMain.subMenuThemeActionPerformed();
     }//GEN-LAST:event_subMenuThemeActionPerformed
 
     private void subMenuAboutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_subMenuAboutActionPerformed
@@ -219,9 +233,7 @@ public class FrameMain extends javax.swing.JFrame {
     }//GEN-LAST:event_subMenuAboutActionPerformed
 
     private void subMenuServerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_subMenuServerActionPerformed
-        dialogServer.setFrameMain(this);
-        dialogServer.init();
-        dialogServer.setVisible(true);
+        controllerFrameMain.subMenuServerActionPerformed();
     }//GEN-LAST:event_subMenuServerActionPerformed
 
     /**

@@ -1,9 +1,8 @@
 package com.tamam.simfikri.ui.component.dialog;
 
-import com.tamam.simfikri.ui.component.base.IComponentInitalizer;
+import com.tamam.swing.component.base.IComponentInitalizer;
 import javax.annotation.PostConstruct;
 import javax.swing.JDialog;
-import javax.swing.JLabel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import org.springframework.stereotype.Component;
@@ -26,7 +25,7 @@ public class DialogAbout extends JDialog implements IComponentInitalizer{
         this.setLocation(x, y);
         this.setSize(300, 300);
         this.setTitle("Application Information");        
-        JScrollPane scroller = new javax.swing.JScrollPane();        
+        JScrollPane scroller = new javax.swing.JScrollPane();
         JTextArea textAreaInformation = new JTextArea();        
         textAreaInformation.setText("ABCDEFGHIJKLM\n"+"OPQRSTUVWXYZ");
         textAreaInformation.setEditable(false);

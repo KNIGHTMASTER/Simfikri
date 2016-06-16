@@ -38,36 +38,37 @@ public class FTPConnection implements IFTPConnection, IParamComponent<ParamFTPSe
         int ftpPort = Integer.valueOf(paramFTPConnection.getFtpPort());
         String ftpUserName = paramFTPConnection.getFtpUserName();
         String ftpPassword = paramFTPConnection.getFtpPassword();        
-        logger.info("PARAM FTP CONNECTION : "+paramFTPConnection.toString());
+        logger.info(paramFTPConnection.toString());
+        
         try {
             fTPClient.connect(ipServer, ftpPort);
-            showServerReply(fTPClient);
+            getServerReply(fTPClient);
             int replyCode = fTPClient.getReplyCode();
             if (!FTPReply.isPositiveCompletion(replyCode)) {
-                logger.info("Operation failed. Server reply code: " + replyCode);                
+                logger.info("Operation failed. Server reply code: " + replyCode);
             }
             boolean success = fTPClient.login(ftpUserName, ftpPassword);
-            showServerReply(fTPClient);
+            getServerReply(fTPClient);
             if (!success) {                
                 logger.info("Could not login to the server");                
             } else {
                 result = 1;
-                System.out.println("LOGGED IN SERVER");
+                logger.info("Logged in FTP server");
             }
         } catch (IOException ex) {
-            System.out.println("Oops! Something wrong happened");
-            ex.printStackTrace();
         }
         return result;
     }
     
-    private static void showServerReply(FTPClient ftpClient) {
+    private String getServerReply(FTPClient ftpClient) {
         String[] replies = ftpClient.getReplyStrings();
+        String result = "";
         if (replies != null && replies.length > 0) {
             for (String aReply : replies) {
-                System.out.println("SERVER: " + aReply);
+                result = result.concat(" ").concat(aReply);
             }
         }
+        return result;
     }
 
     @Override

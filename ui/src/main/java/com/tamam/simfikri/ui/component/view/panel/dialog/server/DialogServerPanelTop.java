@@ -1,6 +1,6 @@
 package com.tamam.simfikri.ui.component.view.panel.dialog.server;
 
-import com.tamam.simfikri.ui.component.base.IComponentInitalizer;
+import com.tamam.swing.component.base.IComponentInitalizer;
 import javax.annotation.PostConstruct;
 import javax.swing.JPanel;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -1,6 +1,6 @@
 package com.tamam.simfikri.ui.component.view.desktoppane;
 
-import com.tamam.simfikri.ui.component.base.IComponentInitalizer;
+import com.tamam.swing.component.base.IComponentInitalizer;
 import javax.annotation.PostConstruct;
 import javax.swing.JDesktopPane;
 import org.springframework.stereotype.Component;

@@ -1,6 +1,6 @@
 package com.tamam.simfikri.ui.component.view.panel.dialog.login;
 
-import com.tamam.simfikri.ui.component.base.IComponentInitalizer;
+import com.tamam.swing.component.base.IComponentInitalizer;
 import com.tamam.simfikri.ui.component.button.dialog.login.ButtonLogin;
 import com.tamam.simfikri.ui.component.button.dialog.login.ButtonReset;
 import javax.annotation.PostConstruct;

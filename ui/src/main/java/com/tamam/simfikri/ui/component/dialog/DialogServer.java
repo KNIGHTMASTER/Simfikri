@@ -1,8 +1,8 @@
 package com.tamam.simfikri.ui.component.dialog;
 
 import com.tamam.simfikri.core.parameter.ParamFTPServer;
-import com.tamam.simfikri.ui.component.base.IComponentAction;
-import com.tamam.simfikri.ui.component.base.IComponentInitalizer;
+import com.tamam.swing.component.base.IComponentAction;
+import com.tamam.swing.component.base.IComponentInitalizer;
 import com.tamam.simfikri.ui.component.validation.ParamComponentDialogServer;
 import com.tamam.simfikri.ui.component.validation.ValidationDialogServer;
 import com.tamam.simfikri.ui.component.view.frame.FrameMain;
@@ -46,6 +46,8 @@ public class DialogServer extends JDialog implements IComponentInitalizer, IComp
     private ControllerDialogServer controllerDialogServer;
     
     private FrameMain frameMain;
+    
+    private boolean isInitialized = false;
 
     public void setFrameMain(FrameMain frameMain) {
         this.frameMain = frameMain;
@@ -61,11 +63,12 @@ public class DialogServer extends JDialog implements IComponentInitalizer, IComp
         this.setModal(true);
         this.setLocation(x, y);
         this.setSize(330, 150);  
-        initAction();        
+        initAction();  
+        isInitialized = true;
     }                
     
     @Override
-    public void initAction() {                                        
+    public void initAction() {
         dialogServerPanelBottom.getBtTest().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {                
@@ -111,4 +114,9 @@ public class DialogServer extends JDialog implements IComponentInitalizer, IComp
         paramFTPServer.setFtpPassword(ftpPassword);
         controllerDialogServer.setComponent(paramFTPServer);
     }
+
+    public boolean isInitialized() {
+        return isInitialized;
+    }
+        
 }

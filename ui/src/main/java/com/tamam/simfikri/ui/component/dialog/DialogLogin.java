@@ -1,7 +1,7 @@
 package com.tamam.simfikri.ui.component.dialog;
 
-import com.tamam.simfikri.ui.component.base.IComponentAction;
-import com.tamam.simfikri.ui.component.base.IComponentInitalizer;
+import com.tamam.swing.component.base.IComponentAction;
+import com.tamam.swing.component.base.IComponentInitalizer;
 import com.tamam.simfikri.ui.component.view.frame.FrameMain;
 import com.tamam.simfikri.ui.component.view.panel.dialog.login.DialogLoginPanelBottom;
 import com.tamam.simfikri.ui.component.view.panel.dialog.login.DialogLoginPanelTop;
@@ -31,6 +31,8 @@ public class DialogLogin extends JDialog implements IComponentInitalizer, ICompo
     private DialogLoginPanelBottom dialogLoginPanelBottom;
     
     private FrameMain frameMain;
+    
+    private boolean isInitiated = false;
 
     public void setFrameMain(FrameMain frameMain) {
         this.frameMain = frameMain;
@@ -45,8 +47,9 @@ public class DialogLogin extends JDialog implements IComponentInitalizer, ICompo
         this.getContentPane().add(dialogLoginPanelBottom, java.awt.BorderLayout.PAGE_END);
         this.setModal(true);
         this.setLocation(x, y);
-        this.setSize(330, 150);  
+        this.setSize(320, 130);  
         initAction();
+        isInitiated = true;
     }                
     
     @Override
@@ -67,4 +70,9 @@ public class DialogLogin extends JDialog implements IComponentInitalizer, ICompo
             }
         });
     }           
+
+    public boolean isInitiated() {
+        return isInitiated;
+    }
+        
 }
