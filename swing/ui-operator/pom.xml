@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>id.co.telkomsigma.etc</groupId>
+        <artifactId>swing</artifactId>
+        <version>1.0.0</version>
+    </parent>
+    <artifactId>ui-operator</artifactId>
+    <packaging>jar</packaging>
+
+    <description>UI Swing Component for Operator</description>
+
+    <organization>
+        <name>Telkomsigma</name>
+        <url>http://www.telkomsigma.co.id</url>
+    </organization>
+
+    <developers>
+        <developer>
+            <id>KNIGHTMASTER</id>
+            <name>Achmad Fauzi</name>
+            <email>fauzi.knightmaster.achmad@gmail.com</email>
+            <roles>
+                <role>author</role>
+                <role>developer</role>
+            </roles>
+            <timezone>+7</timezone>
+        </developer>
+    </developers>
+
+    <properties>
+        <start-class>id.co.telkomsigma.etc.ui.operator.MainApp</start-class>
+    </properties>
+
+    <dependencies>
+
+        <dependency>
+            <groupId>id.co.telkomsigma.etc</groupId>
+            <artifactId>swing-component</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.swinglabs</groupId>
+            <artifactId>swing-layout</artifactId>
+            <version>${swing-layout.version}</version>
+        </dependency>
+        
+        <dependency>
+            <groupId>com.jtattoo</groupId>
+            <artifactId>JTattoo</artifactId>
+            <version>${jtattoo-version}</version>
+        </dependency>
+        
+        <dependency>
+            <groupId>org.netbeans</groupId>
+            <artifactId>awtextra</artifactId>
+            <version>1.0.0</version>
+        </dependency>
+
+    </dependencies>        
+    
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>            
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-dependency-plugin</artifactId>
+                <version>${maven.dependency.plugin}</version>
+                <executions>
+                    <execution>
+                        <id>copy-dependencies</id>
+                        <phase>package</phase>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+                <version>${maven.jar.plugin}</version>
+                <configuration>
+                    <archive>
+                        <manifest>
+                            <addClasspath>true</addClasspath>
+                            <classpathPrefix>lib/</classpathPrefix>
+                        </manifest>
+                    </archive>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+</project>

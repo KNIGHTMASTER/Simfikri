@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>id.co.telkomsigma.etc</groupId>
+        <artifactId>root-etc</artifactId>
+        <version>1.0.0</version>
+    </parent>
+    <artifactId>swing</artifactId>
+    <packaging>pom</packaging>
+    <modules>
+        <module>swing-component</module>
+        <module>ui-setting</module>
+        <module>ui-operator</module>
+    </modules>
+
+    <description>ETC Swing Pom Package</description>
+
+    <organization>
+        <name>Telkomsigma</name>
+        <url>http://www.telkomsigma.co.id</url>
+    </organization>
+
+    <developers>
+        <developer>
+            <id>KNIGHTMASTER</id>
+            <name>Achmad Fauzi</name>
+            <email>fauzi.knightmaster.achmad@gmail.com</email>
+            <roles>
+                <role>author</role>
+                <role>developer</role>
+            </roles>
+            <timezone>+7</timezone>
+        </developer>
+    </developers>
+
+    <repositories>
+        <repository>
+            <id>maven2-repository.netbeans.maven2</id>
+            <name>Netbeans Maven Repository</name>
+            <url>http://bits.netbeans.org/maven2/</url>
+            <layout>default</layout>
+        </repository>
+    </repositories>
+
+    <properties>
+        <maven.compiler.source>1.7</maven.compiler.source>
+        <maven.compiler.target>1.7</maven.compiler.target>
+        <jtattoo-version>1.6.7</jtattoo-version>
+        <swing-layout.version>1.0.3</swing-layout.version>
+        <maven.dependency.plugin>2.8</maven.dependency.plugin>
+        <maven.jar.plugin>2.5</maven.jar.plugin>
+        <jfreechart.version>1.0.13</jfreechart.version>
+    </properties>
+
+</project>
